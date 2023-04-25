@@ -1,22 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import SearchBar from './Components/SearchBar/SearchBar';
+import Main from './Containers/Main/Main';
 
 function App() {
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [weatherData, setWeatherData] = useState([]);
+
+
+  const fetchWeatherData = async () => {
+    const apiKey = "add api here";
+    const url = `https://api.weatherapi.com/v1/current.json?key=${addapikeyhere}&q=${searchQuery}`;
+  
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setWeatherData([data]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleInput = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetchWeatherData();
+  };
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <SearchBar searchTerm={searchQuery} handleInput={handleInput} handleSubmit={handleSubmit} />
+      <Main weatherCards={weatherData} />
       </header>
     </div>
   );
