@@ -8,6 +8,7 @@ const Main = ({ weatherCards }) => {
     return <p>Please enter a location for the Weather!</p>
   }
   const weatherJSON = weatherCards.map((weatherCards) => {
+    console.log(weatherCards)
     return ( 
     <div className="Main"> 
       <WeatherCards

@@ -11,8 +11,8 @@ function App() {
 
 
   const fetchWeatherData = async () => {
-    const apiKey = "add api here";
-    const url = `https://api.weatherapi.com/v1/current.json?key=${addapikeyhere}&q=${searchQuery}`;
+    const apiKey = "6de494309a82496faf4130741232504";
+    const url = `https://api.weatherapi.com/v1/current.json?key=6de494309a82496faf4130741232504&q=${searchQuery}`;
   
     try {
       const response = await fetch(url);
